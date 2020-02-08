@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<f:facet name="first">
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1,shrink-to-fit=no, user-scalable=no" />
+		<title>Manejo de datos de colores</title>
+
+	</f:facet>
+</h:head>
+<body>
+	<p:growl>
+		<p:autoUpdate />
+	</p:growl>
+	<h:form>
+		<p:menubar>
+				<p:menuitem value="Inicio" action="faces/index.html" icon="fa fa-home"></p:menuitem>
+			<p:menuitem value="Productos" action="Producto" icon="fa fa-bars"></p:menuitem>
+			<p:menuitem value="Agencia" action="Agencia" icon="fa fa-codepen"></p:menuitem>
+			<p:menuitem value="Color" action="Color" icon="fa fa-pie-chart"></p:menuitem>
+			<p:menuitem value="Empleados" action="Empleado" icon="fa fa-user-plus"></p:menuitem>
+			<p:menuitem value="Clientes" action="DetalleClienteA"
+				icon="fa fa-user"></p:menuitem>
+			<p:menuitem value="Salir" action="index" ></p:menuitem>
+		</p:menubar>
+	</h:form>
+	<h:form id="form1">
+
+		<p:messages>
+			<p:autoUpdate />
+		</p:messages>
+
+	</h:form>
+	<br />
+
+	<h:form id="form2">
+
+		<p:panel header="Datos Pedidos">
+			<p:dataTable value="#{beanPedidos.listaPedido}" var="empleado"
+				reflow="true" paginator="true" rows="5">
+				<p:column headerText="ID PEDIDO" filterBy="#{empleado.idPedido}"
+					filterMatchMode="contains" priority="1">
+					<h:outputText value="#{empleado.idPedido}" />
+				</p:column>
+				<p:column headerText="FECHA PEDIDO" filterBy="#{empleado.fechaPedido}"
+					filterMatchMode="contains" priority="1">
+					<h:outputText value="#{empleado.fechaPedido}" />
+				</p:column>
+				<p:column headerText="FECHA eNTREGA" priority="2">
+					<h:outputText value="#{empleado.fechaEntregaPedido}" />
+				</p:column>
+				<p:column headerText="Cliente" priority="2">
+					<h:outputText value="#{empleado.cliente.nombreCliente}" />
+				</p:column>
+				<p:column headerText="Pais entrega" priority="2">
+					<h:outputText value="#{empleado.paisEntrega}" />
+				</p:column>
+				<p:column headerText="Ciudad Entrega" priority="2">
+					<h:outputText value="#{empleado.ciudadEntrega}" />
+				</p:column>
+				<p:column headerText="Direccion" priority="2">
+					<h:outputText value="#{empleado.direccionEntrega}" />
+				</p:column>
+				<p:column headerText="Descripcion Estado" priority="2">
+					<h:outputText value="#{empleado.descripcionEstado}" />
+				</p:column>
+				<p:column headerText="Agencia" priority="2">
+					<h:outputText value="#{empleado.agencia.nombre}" />
+				</p:column>
+				
+			</p:dataTable>
+		</p:panel>
+	</h:form>
+</body>
+</html>

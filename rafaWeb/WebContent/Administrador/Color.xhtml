@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<f:facet name="first">
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1,shrink-to-fit=no, user-scalable=no" />
+		<title>Manejo de datos de colores</title>
+
+	</f:facet>
+</h:head>
+<body>
+	<p:growl>
+		<p:autoUpdate />
+	</p:growl>
+	<h:form>
+		<p:menubar>
+			<p:menuitem value="Inicio" action="faces/index.html" icon="fa fa-home"></p:menuitem>
+			<p:menuitem value="Pedidos" action="pedidos"
+				icon="fa fa-shopping-cart"></p:menuitem>
+			<p:menuitem value="Forma Pago" action="FormaPago" icon="fa fa-ge"></p:menuitem>
+			<p:menuitem value="Productos" action="Producto" icon="fa fa-bars"></p:menuitem>
+			<p:menuitem value="Agencia" action="Agencia" icon="fa fa-codepen"></p:menuitem>
+			<p:menuitem value="Empleados" action="Empleado" icon="fa fa-user-plus"></p:menuitem>
+			<p:menuitem value="Clientes" action="DetalleClienteA"
+				icon="fa fa-user"></p:menuitem>
+			<p:menuitem value="Salir" action="faces/index.html" ></p:menuitem>
+		</p:menubar>
+	</h:form>
+	<h:form id="form1">
+
+		<p:messages>
+			<p:autoUpdate />
+		</p:messages>
+
+	</h:form>
+	<br />
+
+	<h:form id="form2">
+
+		<p:panel header="Datos Colores">
+			<p:dataTable value="#{beanColor.listaColores}" var="color"
+				reflow="true" paginator="true" rows="5">
+				<p:column headerText="ID COLOR" filterBy="#{color.idColor}"
+					filterMatchMode="contains" priority="1">
+					<h:outputText value="#{color.idColor}" />
+				</p:column>
+				<p:column headerText="NOMBRE" filterBy="#{color.nombre}"
+					filterMatchMode="contains" priority="1">
+					<h:outputText value="#{color.nombre}" />
+				</p:column>
+				<p:column headerText="OPCIONES">
+					<p:commandButton icon="fa fa-close"
+						action="#{beanColor.actionEliminarColor(color.idColor)}"
+						update="@form">
+						<p:confirm header="Confirmacion" message="Desea eliminar?"
+							icon="fa fa-exclamation-triangle"></p:confirm>
+					</p:commandButton>
+					<p:commandButton icon="fa fa-edit"
+						action="#{beanColor.actionListenerSeleccionarColor(color)}"
+						update="@form" oncomplete="PF('dlgEdicion').show()"></p:commandButton>
+				</p:column>
+
+				<p:commandButton icon="pi pi-times" title="eliminar" update="@form"
+					action="#{beanColor.actionEliminarColor(color.idColor)}">
+					<p:confirm header="Confirmacion" message="Desea eliminar?"
+						icon="fa fa-exclamation-triangle"></p:confirm>
+				</p:commandButton>
+				<p:commandButton icon="pi pi-pencil" title="Editar"
+					actionListener="#{beanColor.actionListenerSeleccionarColor(color)}"
+					update=":formEdicion" oncomplete="PF('dlgEdicion').show();">
+				</p:commandButton>
+			</p:dataTable>
+		</p:panel>
+	</h:form>
+	<p:dialog header="Editar Informacion" widgetVar="dlgEdicion"
+		modal="true">
+		<h:form id="formEdicion">
+			<p:growl>
+
+				<p:autoUpdate />
+			</p:growl>
+			<h:outputText value="Id Color :" />
+			<h:outputText value="#{beanColor.colorSeleccionado.idColor}" />
+			<p:panelGrid columns="2">
+			
+				<h:outputText value="Nombre Color" />
+				<p:inputText value="#{beanColor.colorSeleccionado.nombre}" />
+			</p:panelGrid>
+			<p:commandButton value="Actualizar" icon="pi pi-refresh"
+				update="@form,:form2"
+				actionListener="#{beanColor.actionListenerActualizarColor()}" />
+		</h:form>
+	</p:dialog>
+	<p:confirmDialog global="true" showEffect="fade">
+		<p:commandButton value="si" type="button"
+			styleClass="ui-confirmdialog-yes" icon="fa fa-check" />
+		<p:commandButton value="no" type="button"
+			styleClass="ui-confirmdialog-no" icon="fa fa-times" />
+	</p:confirmDialog>
+</body>
+</html>

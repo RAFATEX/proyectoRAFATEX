@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<f:facet name="first">
+
+
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1,shrink-to-fit=no, user-scalable=no" />
+		<title>Manejo de datos de agencias</title>
+
+	</f:facet>
+</h:head>
+<body>
+	<p:growl>
+		<p:autoUpdate />
+	</p:growl>
+	<h:form>
+		<p:menubar>
+				<p:menuitem value="Inicio" action="faces/index.html" icon="fa fa-home"></p:menuitem>
+			<p:menuitem value="Pedidos" action="pedidos"
+				icon="fa fa-shopping-cart"></p:menuitem>
+			<p:menuitem value="Productos" action="Producto" icon="fa fa-bars"></p:menuitem>
+			<p:menuitem value="Forma Pago" action="FormaPago" icon="fa fa-ge"></p:menuitem>
+			<p:menuitem value="Empleados" action="Empleado"
+				icon="fa fa-user-plus"></p:menuitem>
+			<p:menuitem value="Color" action="Color" icon="fa fa-pie-chart"></p:menuitem>
+			<p:menuitem value="Clientes" action="DetalleClienteA"
+				icon="fa fa-user"></p:menuitem>
+			<p:menuitem value="Salir" action="faces/index.html" ></p:menuitem>
+		</p:menubar>
+	</h:form>
+	<h:form id="form1">
+
+		<p:messages>
+			<p:autoUpdate />
+		</p:messages>
+		<p:panel collapsed="#{beanAgencia.panelColapsado}">
+			<f:facet name="header">
+
+				<p:commandButton value="Nueva Agencia" icon="pi pi-plus"
+					update="@form"
+					actionListener="#{beanAgencia.actionListenerColapsadoPanel()}"></p:commandButton>
+			</f:facet>
+			<p:panelGrid columns="2">
+				<h:outputText value="Nombre:" />
+				<p:inputText value="#{beanAgencia.agencia.nombre}" />
+				<h:outputText value="Telefono:" />
+				<p:inputText value="#{beanAgencia.agencia.telefono}" />
+				<p:commandButton value="Insertar" icon="pi pi-save"
+					update="@form,:form2" action="#{beanAgencia.actionInsertarAgencia()}">
+				</p:commandButton>
+			</p:panelGrid>
+		</p:panel>
+	</h:form>
+	<br />
+
+	<h:form id="form2">
+
+		<p:panel header="Datos Agencia">
+			<p:dataTable value="#{beanAgencia.listaAgencia}" var="agencia"
+				reflow="true" paginator="true" rows="5">
+				<p:column headerText="ID AGENCIA" filterBy="#{agencia.idAgencia}"
+					filterMatchMode="contains" priority="1">
+					<h:outputText value="#{agencia.idAgencia}" />
+				</p:column>
+				<p:column headerText="Nombre" filterBy="#{agencia.nombre}"
+					filterMatchMode="contains" priority="1">
+					<h:outputText value="#{agencia.nombre}" />
+
+				</p:column>
+				<p:column headerText="Telefono" priority="2">
+					<h:outputText value="#{agencia.telefono}" />
+				</p:column>
+				<p:column headerText="Opciones" priority="2">
+					<p:commandButton icon="pi pi-times" title="eliminar" update="@form"
+						action="#{beanAgencia.actionEliminarAgencia(agencia.idAgencia)}">
+						<p:confirm header="Confirmacion" message="Desea eliminar?"
+							icon="fa fa-exclamation-triangle"></p:confirm>
+					</p:commandButton>
+					<p:commandButton icon="pi pi-pencil" title="Editar"
+						action="#{beanAgencia.actionSeleccionarAgencia(agencia)}"
+						update=":formEdicion" oncomplete="PF('dlgEdicion').show();">
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+		</p:panel>
+	</h:form>
+	<p:dialog header="Editar Informacion" widgetVar="dlgEdicion"
+		modal="true">
+		<h:form id="formEdicion">
+			<p:growl>
+
+				<p:autoUpdate />
+			</p:growl>
+			<h:outputText value="Id Agencia :" />
+			<h:outputText value="#{beanAgencia.agenciaSeleccionada.idAgencia}" />
+			<p:panelGrid columns="2">
+				<h:outputText value="Nombre Agencia:" />
+				<p:inputText value="#{beanAgencia.agenciaSeleccionada.nombre}" />
+				<h:outputText value="Telefono Agencia:" />
+				<p:inputText value="#{beanAgencia.agenciaSeleccionada.telefono}" />
+			</p:panelGrid>
+			<p:commandButton value="Actualizar" icon="pi pi-refresh"
+				update="@form,:form2"
+				action="#{beanAgencia.actionActualizarAgencia()}" />
+		</h:form>
+	</p:dialog>
+	<p:confirmDialog global="true" showEffect="fade">
+		<p:commandButton value="si" type="button"
+			styleClass="ui-confirmdialog-yes" icon="fa fa-check" />
+		<p:commandButton value="no" type="button"
+			styleClass="ui-confirmdialog-no" icon="fa fa-times" />
+	</p:confirmDialog>
+</body>
+</html>

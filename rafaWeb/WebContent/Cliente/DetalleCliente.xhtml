@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head></h:head>
+<body>
+	<body>
+		<p:growl>
+			<p:autoUpdate />
+		</p:growl>
+		<h:form>
+			<p:menubar>
+				<p:menuitem value="Inicio" action="faces/index.html" icon="fa fa-home"></p:menuitem>
+				<p:menuitem value="Pedidos" action="pedidos"
+					icon="fa fa-shopping-cart"></p:menuitem>
+				<p:menuitem value="Catalogo" action="catalogo" icon="fa fa-circle"></p:menuitem>
+				<p:menuitem value="Salir" action="faces/index.html" ></p:menuitem>
+			</p:menubar>
+		</h:form>
+		<h:form id="form">
+			<p:panel header="Detalle de Clientes">
+				<p:panelGrid columns="2">
+					<h:outputText value="ID" />
+					<h:outputText value="#{beanCliente.clienteLogin.idCliente}" />
+					<h:outputText value="CEDULA" />
+					<h:outputText value="#{beanCliente.clienteLogin.cedulaCliente}" />
+					<h:outputText value="APELLIDO" />
+					<h:outputText value="#{beanCliente.clienteLogin.apellidoCliente}" />
+					<h:outputText value="NOMBRE" />
+					<h:outputText value="#{beanCliente.clienteLogin.nombreCliente}" />
+					<h:outputText value="DIRECCION" />
+					<h:outputText value="#{beanCliente.clienteLogin.direccionCliente}" />
+					<h:outputText value="CORREO ELECTRONICO" />
+					<h:outputText value="#{beanCliente.clienteLogin.correoCliente}" />
+					<h:outputText value="CONVENCIONAL" />
+					<h:outputText value="#{beanCliente.clienteLogin.telefono}" />
+					<h:outputText value="CELULAR" />
+					<h:outputText value="#{beanCliente.clienteLogin.celular}" />
+					<h:outputText value="CONTRASENIA" />
+					<h:outputText value="#{beanCliente.clienteLogin.contrasenia}" />
+
+				</p:panelGrid>
+				<p:commandButton icon="fa fa-edit" title="Editar"
+					action="#{beanCliente.actionSeleccionarCliente(clienteLogin)}"
+					update=":formEdicion" oncomplete="PF('dlgEdicion').show();">
+				</p:commandButton>
+			</p:panel>
+		</h:form>
+		<p:dialog header="Editar informacion" widgetVar="dlgEdicion"
+			modal="true">
+			<h:form id="formEdicion">
+				<p:growl>
+					<p:autoUpdate />
+				</p:growl>
+				<h:outputText value="ID" />
+				<h:outputText value="#{beanCliente.clienteSeleccionado.idCliente}" />
+				<p:panelGrid columns="2">
+					<h:outputText value="Cedula: " />
+					<p:inputText
+						value="#{beanCliente.clienteSeleccionado.cedulaCliente}" />
+					<h:outputText value="Apellido: " />
+					<p:inputText
+						value="#{beanCliente.clienteSeleccionado.apellidoCliente}" />
+					<h:outputText value="Nombre: " />
+					<p:inputText
+						value="#{beanCliente.clienteSeleccionado.nombreCliente}" />
+					<h:outputText value="Direccion: " />
+					<p:inputText
+						value="#{beanCliente.clienteSeleccionado.direccionCliente}" />
+					<h:outputText value="Correo Electronico: " />
+					<p:inputText
+						value="#{beanCliente.clienteSeleccionado.correoCliente}" />
+					<h:outputText value="Telefono Convencional: " />
+					<p:inputText value="#{beanCliente.clienteSeleccionado.telefono}" />
+					<h:outputText value="Celular: " />
+					<p:inputText value="#{beanCliente.clienteSeleccionado.celular}" />
+					<h:outputText value="Contraseña: " />
+					<p:password value="#{beanCliente.clienteSeleccionado.contrasenia}" />
+					<p:commandButton value="Actualizar" icon="fa fa-save"
+						action="#{beanCliente.actionActualizarCliente()}" />
+				</p:panelGrid>
+			</h:form>
+		</p:dialog>
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+			<p:commandButton value="Si" type="button"
+				styleClass="ui-confirmdialog-yes" icon="fa fa-check" />
+			<p:commandButton value="No" type="button"
+				styleClass="ui-confirmdialog-no" icon="fa fa-times" />
+		</p:confirmDialog>
+	</body>
+</body>
+</html>

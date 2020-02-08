@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<f:facet name="first">
+
+
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1,shrink-to-fit=no, user-scalable=no" />
+		<title>Registro de Empleados</title>
+
+	</f:facet>
+</h:head>
+<body>
+	<h2 style="background-color: lightgray" align="center">Empleados</h2>
+	<p:growl>
+		<p:autoUpdate />
+	</p:growl>
+	<h:form>
+		<p:menubar>
+			<p:menuitem value="Inicio" action="faces/index.html" icon="fa fa-home"></p:menuitem>
+			<p:menuitem value="Pedidos" action="pedidos"
+				icon="fa fa-shopping-cart"></p:menuitem>
+			<p:menuitem value="Productos" action="Producto" icon="fa fa-bars"></p:menuitem>
+			<p:menuitem value="Forma Pago" action="FormaPago" icon="fa fa-ge"></p:menuitem>
+			<p:menuitem value="Agencia" action="Agencia" icon="fa fa-codepen"></p:menuitem>
+			<p:menuitem value="Cliente" action="DetalleClienteA"
+				icon="fa fa-user"></p:menuitem>
+			<p:menuitem value="Color" action="Color" icon="fa fa-pie-chart"></p:menuitem>
+			<p:menuitem value="Salir" action="faces/index.html" ></p:menuitem>
+		</p:menubar>
+	</h:form>
+	<br />
+	<div align="center">
+		<h:form id="form1">
+
+			<p:messages>
+				<p:autoUpdate />
+			</p:messages>
+			<p:panel>
+
+				<p:panelGrid columns="2">
+					<h:outputText value="Cedula:" />
+					<p:inputText value="#{beanEmpleado.empleado.cedula}" />
+					<h:outputText value="Nombre:" />
+					<p:inputText value="#{beanEmpleado.empleado.nombre}" />
+					<h:outputText value="Apellido:" />
+					<p:inputText value="#{beanEmpleado.empleado.apellido}" />
+					<h:outputText value="Correo" />
+					<p:inputText value="#{beanEmpleado.empleado.correo}" />
+					<h:outputText value="Direccion" />
+					<p:inputText value="#{beanEmpleado.empleado.direccion}" />
+					<h:outputText value="Telefono" />
+					<p:inputText value="#{beanEmpleado.empleado.telefono}" />
+					<h:outputText value="Celular" />
+					<p:inputText value="#{beanEmpleado.empleado.celular}" />
+					<p:outputLabel value="ROL:" />
+					<p:selectOneMenu value="#{beanRol.rol.idRol}" dynamic="true"
+						style="width:125px">
+						<f:selectItems value="#{beanRol.listarol}" var="rol"
+							itemLabel="#{rol.nombreRol}" itemValue="#{rol.idRol}" />
+					</p:selectOneMenu>
+					<h:outputText value="Contraseña" />
+					<p:password value="#{beanEmpleado.empleado.contrasenia}" />
+				</p:panelGrid>
+				<p:commandButton value="Insertar" icon="pi pi-save"
+					update="@form,:form2"
+					actionListener="#{beanEmpleado.actionListenerInsertarEmpleado()}">
+				</p:commandButton>
+			</p:panel>
+		</h:form>
+	</div>
+	<br />
+
+	<h:form id="form2">
+
+		<p:panel header="Datos Empleado">
+			<p:dataTable value="#{beanEmpleado.listaEmpleados}" var="empleado"
+				reflow="true" paginator="true" rows="5">
+				<p:column headerText="ID Empleado" filterBy="#{empleado.idEmpleado}"
+					filterMatchMode="contains" priority="1">
+					<h:outputText value="#{empleado.idEmpleado}" />
+				</p:column>
+				<p:column headerText="Cedula" filterBy="#{empleado.cedula}"
+					filterMatchMode="contains" priority="1">
+					<h:outputText value="#{empleado.cedula}" />
+				</p:column>
+				<p:column headerText="Nombre" priority="2">
+					<h:outputText value="#{empleado.nombre}" />
+				</p:column>
+				<p:column headerText="Apellido" priority="2">
+					<h:outputText value="#{empleado.apellido}" />
+				</p:column>
+				<p:column headerText="Correo" priority="2">
+					<h:outputText value="#{empleado.correo}" />
+				</p:column>
+				<p:column headerText="Direccion" priority="2">
+					<h:outputText value="#{empleado.direccion}" />
+				</p:column>
+				<p:column headerText="Telefono" priority="2">
+					<h:outputText value="#{empleado.telefono}" />
+				</p:column>
+				<p:column headerText="Celular" priority="2">
+					<h:outputText value="#{empleado.celular}" />
+				</p:column>
+				<p:column headerText="Rol" priority="2">
+					<h:outputText value="#{empleado.rol.nombreRol}" />
+				</p:column>
+				<p:column headerText="Contrasenia" priority="2">
+					<h:outputText value="#{empleado.contrasenia}" />
+				</p:column>
+				<p:column headerText="OPCIONES" priority="1">
+					<p:commandButton icon="pi pi-times" title="eliminar" update="@form"
+						actionListener="#{beanEmpleado.actionListenerEliminarEmpleado(empleado.idEmpleado)}">
+						<p:confirm header="Confirmacion" message="Desea eliminar?"
+							icon="fa fa-exclamation-triangle">
+						</p:confirm>
+					</p:commandButton>
+					<p:commandButton icon="pi pi-pencil" title="Editar"
+						actionListener="#{beanEmpleado.actionListenerSeleccionarEmpleado(empleado)}"
+						update=":formEdicion" oncomplete="PF('dlgEdicion').show();">
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+		</p:panel>
+	</h:form>
+	<p:dialog header="Editar Informacion" widgetVar="dlgEdicion"
+		modal="true">
+		<h:form id="formEdicion">
+			<p:growl>
+
+				<p:autoUpdate />
+			</p:growl>
+			<h:outputText value="ID Empleado :" />
+			<h:outputText value="#{beanEmpleado.empleadoSeleccionado.idEmpleado}" />
+			<p:panelGrid columns="2">
+
+				<h:outputText value="Cedula" />
+				<p:inputText value="#{beanEmpleado.empleadoSeleccionado.cedula}" />
+				<h:outputText value="Nombre" />
+				<p:inputText value="#{beanEmpleado.empleadoSeleccionado.nombre}" />
+				<h:outputText value="Apellido" />
+				<p:inputText value="#{beanEmpleado.empleadoSeleccionado.apellido}" />
+				<h:outputText value="Correo" />
+				<p:inputText value="#{beanEmpleado.empleadoSeleccionado.correo}" />
+				<h:outputText value="Direccion" />
+				<p:inputText value="#{beanEmpleado.empleadoSeleccionado.direccion}" />
+				<h:outputText value="Telefono" />
+				<p:inputText value="#{beanEmpleado.empleadoSeleccionado.telefono}" />
+				<h:outputText value="Celular" />
+				<p:inputText value="#{beanEmpleado.empleadoSeleccionado.celular}" />
+				<p:outputLabel value="ROL:" />
+				<p:selectOneMenu value="#{beanRol.rol.idRol}" dynamic="true"
+					style="width:125px">
+					<f:selectItems value="#{beanRol.listarol}" var="rol"
+						itemLabel="#{rol.nombreRol}" itemValue="#{rol.idRol}" />
+				</p:selectOneMenu>
+				<h:outputText value="Contrasenia" />
+				<p:inputText
+					value="#{beanEmpleado.empleadoSeleccionado.contrasenia}" />
+			</p:panelGrid>
+			<p:commandButton value="Actualizar" icon="pi pi-refresh"
+				update="@form,:form2"
+				actionListener="#{beanEmpleado.actionListenerActualizarEmpleado()}" />
+		</h:form>
+	</p:dialog>
+	<p:confirmDialog global="true" showEffect="fade">
+		<p:commandButton value="si" type="button"
+			styleClass="ui-confirmdialog-yes" icon="fa fa-check" />
+		<p:commandButton value="no" type="button"
+			styleClass="ui-confirmdialog-no" icon="fa fa-times" />
+	</p:confirmDialog>
+
+</body>
+</html>
+
