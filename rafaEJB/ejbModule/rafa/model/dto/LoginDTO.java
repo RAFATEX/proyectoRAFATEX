@@ -2,7 +2,7 @@ package rafa.model.dto;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-import javax.persistence.Column;
+
 
 /**
  * Session Bean implementation class LoginDTO
