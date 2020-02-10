@@ -35,8 +35,7 @@
 				<h:outputText value="DESCRIPCION:" />
 				<p:inputText value="#{beanProducto.descripcion}"></p:inputText>
 				<h:outputText value="IMAGEN:" />
-			    <p:inputText value="#{beanProducto.rutaImagen}"></p:inputText>
-				
+			    <p:inputText value="#{beanProducto.rutaImagen}"></p:inputText>	
 				<h:outputText value="CANTIDAD MINIMA:" />
 				<p:spinner value="#{beanProducto.cantidadminima}" min="3" size="10" />
 				<h:outputText value="PRECIO:" />
@@ -97,8 +96,8 @@
 			<p:column headerText="COLOR" style="width:70px">
 				<h:outputText value="#{p.color.nombre}"></h:outputText>
 			</p:column>
-			 <p:column style="width: 300px" >
-                    <p:graphicImage url="#{p.rutaImagen}" style="max-width: 100%"/>
+			 <p:column headerText="Imagen" style="width: 300px" >
+                    <p:graphicImage url="#{p.rutaImagen}" />
              </p:column>
 
 			<p:column headerText="OPCIONES">
