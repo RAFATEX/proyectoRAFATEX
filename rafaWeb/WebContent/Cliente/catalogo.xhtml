@@ -46,6 +46,7 @@
 						actionListener="#{beanPedidos.actionInsertarProducto(p)}"
 						update=":form2:carrito" icon="fa fa-shopping-cart" />
 					<p:commandButton icon="fa fa-camera" title="Imagen"
+						action="#{beanProducto.actionSeleccionarP(p)}"
 						update=":formEdicion" oncomplete="PF('dlgEdicion').show();"/>
 				</h:panelGrid>
 			</p:panel>
@@ -58,7 +59,9 @@
 				<p:autoUpdate />
 			</p:growl>
 			<p:panelGrid >
-				<p:graphicImage value="#{beanProducto.rutaImagen}"/>
+				<h:outputText value="ID" />
+				<h:outputText value="#{beanProducto.seleccionado.idProducto}"/>
+				<p:graphicImage  url="#{beanProducto.seleccionado.rutaImagen}"  />
 			</p:panelGrid>
 		</h:form>
 	</p:dialog>
