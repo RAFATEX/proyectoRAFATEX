@@ -15,6 +15,7 @@ import rafa.model.manager.ManagerDAO;
 import rafa.model.manager.ManagerProducto;
 import rafa.model.entities.DetallePedido;
 import rafa.model.entities.Pedido;
+import rafa.model.entities.Producto;
 
 
 /**
@@ -30,12 +31,14 @@ public class ManagerDetallePedido {
 	private ManagerCliente managerClientes;
 	@EJB
 	private ManagerDAO managerDAO;
+	@EJB 
+	private ManagerProducto mProduto;
 	
+	private Producto producto;
 	
     public ManagerDetallePedido() {
         // TODO Auto-generated constructor stub
     }
 
-    
     
 }

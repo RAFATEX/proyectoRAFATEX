@@ -33,7 +33,7 @@
 	</p:panel>
 	<br />
 	<h:form id="form1">
-		<p:dataGrid value="#{beanPedidos.listaProductos}" var="p" columns="4"
+		<p:dataGrid value="#{beanProducto.listaproducto}" var="p" columns="4"
 			rows="8" paginator="true" rowsPerPageTemplate="4,8,12">
 			<f:facet name="header">
 				<h:outputText value="Seleccione los productos:" />
@@ -45,10 +45,26 @@
 					<p:commandButton
 						actionListener="#{beanPedidos.actionInsertarProducto(p)}"
 						update=":form2:carrito" icon="fa fa-shopping-cart" />
+					<p:commandButton icon="fa fa-camera" title="Imagen"
+						action="#{beanProducto.actionSeleccionarP(p)}"
+						update=":formEdicion" oncomplete="PF('dlgEdicion').show();"/>
 				</h:panelGrid>
 			</p:panel>
 		</p:dataGrid>
 	</h:form>
+	<p:dialog header="Imagen" widgetVar="dlgEdicion"
+		modal="true">
+		<h:form id="formEdicion">
+			<p:growl>
+				<p:autoUpdate />
+			</p:growl>
+			<p:panelGrid >
+				<h:outputText value="ID" />
+				<h:outputText value="#{beanProducto.seleccionado.idProducto}"/>
+				<p:graphicImage  url="#{beanProducto.seleccionado.rutaImagen}"  />
+			</p:panelGrid>
+		</h:form>
+	</p:dialog>
 	<br />
 	<h:form id="form2">
 		<h:panelGrid columns="2" style="width:50%">

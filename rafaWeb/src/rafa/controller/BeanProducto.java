@@ -43,6 +43,9 @@ public class BeanProducto implements Serializable {
 	private Empleado empleado;
 	private Color color;
 	private Producto producto;
+	
+	private Producto seleccionado;
+	
 	private BigDecimal cantidadExistente;
 	private Number idcolor;
 	private Number idempleado;
@@ -141,7 +144,28 @@ public class BeanProducto implements Serializable {
 	        FacesContext.getCurrentInstance().addMessage("messages", new FacesMessage(FacesMessage.SEVERITY_INFO, "subio elvideo con exito " + uploadedFile.getFileName(), ""));
 	    }
 
+	public void actionSeleccionarP(Producto p) {
+		seleccionado = p;
+	}
 	
+	public Producto getProducto() {
+		return producto;
+	}
+
+	public void setProducto(Producto producto) {
+		this.producto = producto;
+	}
+
+	public Producto getSeleccionado() {
+		return seleccionado;
+	}
+
+	public void setSeleccionado(Producto seleccionado) {
+		this.seleccionado = seleccionado;
+	}
+
+
+
 	public List<Producto> getListaproducto() {
 		return listaproducto;
 	}
