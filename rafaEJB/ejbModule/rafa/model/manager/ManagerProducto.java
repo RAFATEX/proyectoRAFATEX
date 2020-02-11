@@ -7,6 +7,7 @@ import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import rafa.model.manager.ManagerDAO;
 
@@ -34,11 +35,13 @@ public class ManagerProducto {
   		return p.getCantidadExistente().intValue();
   	}
  
-  	@SuppressWarnings("unchecked")
+  	
+	@SuppressWarnings("unchecked")
   	public List<Producto> findAllProductos(){
-  		return managerDAO.findAll(Producto.class, "Producto p From Producto.finAll p.id");
+  		return managerDAO.findAll(Producto.class, "o.nombre");
   	}
   	
+ 
  
   	public Producto findProductoById(Number codigoProducto) throws Exception{
   		return  em.find(Producto.class, codigoProducto);
