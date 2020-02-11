@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Confirmacion</title>
+</h:head>
+<body>
+	<p:panel header="Datos del cliente:" style="width:800px">
+		<h:panelGrid columns="2">
+			<h:outputText value="Cédula:" />
+			<h:outputText value="#{beanPedido.cedulaCliente}" />
+			<h:outputText value="Nombres:" />
+			<h:outputText value="#{beanPedido.nombreCliente} #{beanPedido.apellidoCliente}" />
+			<h:outputText value="Dirección:" />
+			<h:outputText value="#{beanPedido.direccionCliente}" />
+		</h:panelGrid>
+	</p:panel>
+	<br />
+	<h:form id="form1">
+		
+			<p:panel header="Datos Adicionales:" style="width:800px">
+		  <h:panelGrid columns="2">
+			  <h:outputText value="Fecha Pedido:" />
+				<p:inputText value="#{beanPedido.pedido.fechaPedido}" />
+				<h:outputText value="Fecha de Entrega:" />
+				<p:calendar value="#{beanPedido.pedido.fechaEntregaPedido}" />
+				<h:outputText value="Cliente:" />
+				<p:inputText value="#{beanPedido.nombreCliente}" />
+				<h:outputText value="pais Entrega:" />
+				<p:inputText value="#{beanPedido.pedido.paisEntrega}" />
+				<h:outputText value="Ciudad Entrega:" />
+				<p:inputText value="#{beanPedido.pedido.ciudadEntrega}" />
+				<h:outputText value="Direccion Entrega:" />
+				<p:inputText value="#{beanPedido.pedido.direccionEntrega}" />
+				<h:outputText value="Descripcion estado:" />
+				<p:inputText value="#{beanPedido.pedido.descripcionEstado}" />
+				<p:outputLabel value="Agencia:" />
+					<p:selectOneMenu value="#{beanAgencia.agencia.idAgencia}" dynamic="true"
+						style="width:125px">
+						<f:selectItems value="#{beanAgencia.listaAgencia}" var="rol"
+							itemLabel="#{rol.nombre}" itemValue="#{rol.idAgencia}" />
+					</p:selectOneMenu>
+				
+		</h:panelGrid>	
+	</p:panel>
+		<h:panelGrid style="text-align:center" columns="2">
+			<p:commandButton icon="fa fa-shopping-cart" action="catalogo"
+				value="Regresar al carrito de compras"></p:commandButton>
+			<p:commandButton icon="fa fa-save" action="#{beanPedido.actionListenerInsertarPedido()}"
+				value="Confirmar el pedido"></p:commandButton>
+		</h:panelGrid>
+	</h:form>
+</body>
+</html>
