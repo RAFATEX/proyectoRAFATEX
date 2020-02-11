@@ -36,7 +36,7 @@ public class ManagerProducto {
  
   	@SuppressWarnings("unchecked")
   	public List<Producto> findAllProductos(){
-  		return managerDAO.findAll(Producto.class, "o.nombre");
+  		return managerDAO.findAll(Producto.class, "Producto p From Producto.finAll p.id");
   	}
   	
  
@@ -49,7 +49,6 @@ public class ManagerProducto {
     	Color color = (Color) em.find(Color.class, idcolor);    
     	Empleado empleado=(Empleado)em.find(Empleado.class, idempleado);
     	producto.setColor(color);
-    	//producto.setEmpleado(empleado);
     	em.persist(producto);
     }
  
