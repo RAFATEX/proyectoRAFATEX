@@ -21,17 +21,18 @@
 	</p:growl>
 	<h:form>
 		<p:menubar>
-				<p:menuitem value="Inicio" action="faces/index.html" icon="fa fa-home"></p:menuitem>
-			<p:menuitem value="Pedidos" action="pedidos"
+			<p:menuitem value="Inicio" action="index.html" icon="fa fa-home"></p:menuitem>
+			<p:menuitem value="Pedidos" action="Pedidos"
 				icon="fa fa-shopping-cart"></p:menuitem>
-			<p:menuitem value="Productos" action="Producto" icon="fa fa-bars"></p:menuitem>
+			<p:menuitem value="Productos" action="ProductosA" icon="fa fa-bars"></p:menuitem>
 			<p:menuitem value="Forma Pago" action="FormaPago" icon="fa fa-ge"></p:menuitem>
 			<p:menuitem value="Empleados" action="Empleado"
 				icon="fa fa-user-plus"></p:menuitem>
 			<p:menuitem value="Color" action="Color" icon="fa fa-pie-chart"></p:menuitem>
+			<p:menuitem value="Parametros" action="Parametros" icon="fa fa-cicle"></p:menuitem>
 			<p:menuitem value="Clientes" action="DetalleClienteA"
 				icon="fa fa-user"></p:menuitem>
-			<p:menuitem value="Salir" action="faces/index.html" ></p:menuitem>
+			<p:menuitem value="Salir" action="faces/index.html"></p:menuitem>
 		</p:menubar>
 	</h:form>
 	<h:form id="form1">
@@ -52,7 +53,8 @@
 				<h:outputText value="Telefono:" />
 				<p:inputText value="#{beanAgencia.agencia.telefono}" />
 				<p:commandButton value="Insertar" icon="pi pi-save"
-					update="@form,:form2" action="#{beanAgencia.actionInsertarAgencia()}">
+					update="@form,:form2"
+					action="#{beanAgencia.actionInsertarAgencia()}">
 				</p:commandButton>
 			</p:panelGrid>
 		</p:panel>

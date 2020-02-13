@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import rafa.model.entities.FormaPago;
+import rafa.model.entities.Parametro;
 
 
 
@@ -56,5 +57,21 @@ public class ManagerFormaPago {
         	throw new Exception("No existe la forma de pago");
         fp.setTipo(formap.getTipo());
     	em.merge(fp);
+    }
+    
+   // -----------------------------
+    
+    public List<Parametro>findAllParametro(){
+    	String consulta = "SELECT p FROM Parametro p";
+    	Query q = em.createQuery(consulta, Parametro.class);
+    	return q.getResultList();
+    }
+    
+    public void insertarParametro(Parametro p) {
+    	Parametro pa = new Parametro();
+    	pa.setNombreParametro(p.getNombreParametro());
+    	pa.setValorParametro(p.getValorParametro());
+    	
+    	em.persist(pa);
     }
 }

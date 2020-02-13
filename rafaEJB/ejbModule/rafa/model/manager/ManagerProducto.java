@@ -1,6 +1,7 @@
 package rafa.model.manager;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -82,5 +83,24 @@ public class ManagerProducto {
   			throw new Exception(e.getMessage());
   		}
   	}
-
+//-------------------- COMPRAS----------------
+  	public List<Producto> AgregarProducto(List<Producto>carrito, Producto p) {
+  		if	(carrito==null)
+  			carrito=new ArrayList<Producto>();
+  		carrito.add(p);
+  		return carrito;
+  	}
+  	
+  	public List<Producto>EliminarCarrito(List<Producto>carrito, int codigo){
+  		if(carrito==null)
+  			return null;
+  		int i=0;
+  		for(Producto p:carrito) {
+  			if(p.getIdProducto()== codigo) {
+  				carrito.remove(i);
+  				break;
+  			}
+  		}
+  		return carrito;
+  	}
 }

@@ -14,12 +14,11 @@
 	</p:growl>
 	<h:form>
 		<p:menubar>
-				<p:menuitem value="Inicio" action="faces/index.html" icon="fa fa-home"></p:menuitem>
-			<p:menuitem value="Pedidos" action="pedidos"
-				icon="fa fa-shopping-cart"></p:menuitem>
-			<p:menuitem value="Agencia" action="Agencia" icon="fa fa-codepen"></p:menuitem>
-			<p:menuitem value="Color" action="ColorIngreso" icon="fa fa-pie-chart"></p:menuitem>
-			<p:menuitem value="Salir" action="faces/index.html" ></p:menuitem>
+			<p:menuitem value="Inicio" action="faces/index.html"
+				icon="fa fa-home"></p:menuitem>
+			<p:menuitem value="Color" action="ColorIngreso" icon="fa fa-card"></p:menuitem>
+			<p:menuitem value="Productos" action="Producto" icon="fa fa-bars"></p:menuitem>
+			<p:menuitem value="Salir" action="faces/index.html"></p:menuitem>
 		</p:menubar>
 	</h:form>
 	<br />
@@ -35,7 +34,7 @@
 				<h:outputText value="DESCRIPCION:" />
 				<p:inputText value="#{beanProducto.descripcion}"></p:inputText>
 				<h:outputText value="IMAGEN:" />
-			    <p:inputText value="#{beanProducto.rutaImagen}"></p:inputText>	
+				<p:inputText value="#{beanProducto.rutaImagen}"></p:inputText>
 				<h:outputText value="CANTIDAD MINIMA:" />
 				<p:spinner value="#{beanProducto.cantidadminima}" min="3" size="10" />
 				<h:outputText value="PRECIO:" />
@@ -96,9 +95,9 @@
 			<p:column headerText="COLOR" style="width:70px">
 				<h:outputText value="#{p.color.nombre}"></h:outputText>
 			</p:column>
-			 <p:column headerText="Imagen" style="width: 200px" >
-                    <p:graphicImage  url="#{p.rutaImagen}"  height="120" width="100"   />
-             </p:column>
+			<p:column headerText="Imagen" style="width: 200px">
+				<p:graphicImage url="#{p.rutaImagen}" height="120" width="100" />
+			</p:column>
 
 			<p:column headerText="OPCIONES">
 				<p:commandButton icon="fa fa-close"

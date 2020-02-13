@@ -19,12 +19,11 @@
 	</p:growl>
 	<h:form>
 		<p:menubar>
-				<p:menuitem value="Inicio" action="faces/index.html" icon="fa fa-home"></p:menuitem>
-			<p:menuitem value="Pedidos" action="pedidos"
-				icon="fa fa-shopping-cart"></p:menuitem>
+			<p:menuitem value="Inicio" action="faces/index.html"
+				icon="fa fa-home"></p:menuitem>
+			<p:menuitem value="Color" action="ColorIngreso" icon="fa fa-card"></p:menuitem>
 			<p:menuitem value="Productos" action="Producto" icon="fa fa-bars"></p:menuitem>
-			<p:menuitem value="Clientes" action="DetalleClienteA"></p:menuitem>
-			<p:menuitem value="Salir" action="faces/index.html" ></p:menuitem>
+			<p:menuitem value="Salir" action="faces/index.html"></p:menuitem>
 		</p:menubar>
 	</h:form>
 	<h:form id="form1">
@@ -43,8 +42,7 @@
 				<h:outputText value="Color:" />
 				<p:inputText value="#{beanColor.color.nombre}" />
 				<p:commandButton value="Insertar" icon="pi pi-save"
-					update="@form,:form2"
-					action="#{beanColor.actionInsertarColor()}">
+					update="@form,:form2" action="#{beanColor.actionInsertarColor()}">
 				</p:commandButton>
 			</p:panelGrid>
 		</p:panel>
@@ -98,7 +96,7 @@
 			<h:outputText value="Id Color :" />
 			<h:outputText value="#{beanColor.colorSeleccionado.idColor}" />
 			<p:panelGrid columns="2">
-			
+
 				<h:outputText value="Nombre Color" />
 				<p:inputText value="#{beanColor.colorSeleccionado.nombre}" />
 			</p:panelGrid>

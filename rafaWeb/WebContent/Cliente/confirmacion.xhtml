@@ -9,50 +9,65 @@
 	<title>Confirmacion</title>
 </h:head>
 <body>
-	<p:panel header="Datos del cliente:" style="width:800px">
-		<h:panelGrid columns="2">
-			<h:outputText value="Cédula:" />
-			<h:outputText value="#{beanCliente.clienteLogin.cedulaCliente}" />
-			<h:outputText value="Nombres:" />
-			<h:outputText value="#{beanCliente.clienteLogin.nombreCliente} #{beanCliente.clienteLogin.apellidoCliente}" />
-			<h:outputText value="Dirección:" />
-			<h:outputText value="#{beanCliente.clienteLogin.direccionCliente}" />
-		</h:panelGrid>
-	</p:panel>
-	<br />
-	<h:form id="form1">
-		
+	<h:form>
+		<p:menubar>
+			<p:menuitem value="Inicio" action="index.html" icon="fa fa-home"></p:menuitem>
+			<p:menuitem value="Catalogo" action="catalogo"
+				icon="fa fa-shopping-cart"></p:menuitem>
+			<p:menuitem value="Pedido" action="confirmacion" icon="fa fa-bars"></p:menuitem>
+			<p:menuitem value="Datos Pesonales" action="DetalleCliente"
+				icon="fa fa-user"></p:menuitem>
+			<p:menuitem value="Salir" action="faces/index.html"></p:menuitem>
+		</p:menubar>
+	</h:form>
+	<h:form>
+		<p:panel header="Datos del cliente:" style="width:800px">
+			<h:panelGrid columns="2">
+				<h:outputText value="Cédula:" />
+				<h:outputText value="#{beanCliente.clienteLogin.cedulaCliente}" />
+				<h:outputText value="Nombres:" />
+				<h:outputText
+					value="#{beanCliente.clienteLogin.nombreCliente} #{beanCliente.clienteLogin.apellidoCliente}" />
+				<h:outputText value="Dirección:" />
+				<h:outputText value="#{beanCliente.clienteLogin.direccionCliente}" />
+			</h:panelGrid>
+		</p:panel>
+		<br />
+		<h:form id="form1">
+
 			<p:panel header="Datos Adicionales:" style="width:800px">
-		  <h:panelGrid columns="2">
-			  <h:outputText value="Fecha Pedido:" />
-				<p:inputText value="#{beanPedido.pedido.fechaPedido}" />
-				<h:outputText value="Fecha de Entrega:" />
-				<p:calendar value="#{beanPedido.pedido.fechaEntregaPedido}" />
-				<h:outputText value="Cliente:" />
-				<p:inputText value="#{beanPedido.nombreCliente}" />
-				<h:outputText value="pais Entrega:" />
-				<p:inputText value="#{beanPedido.pedido.paisEntrega}" />
-				<h:outputText value="Ciudad Entrega:" />
-				<p:inputText value="#{beanPedido.pedido.ciudadEntrega}" />
-				<h:outputText value="Direccion Entrega:" />
-				<p:inputText value="#{beanPedido.pedido.direccionEntrega}" />
-				<h:outputText value="Descripcion estado:" />
-				<p:inputText value="#{beanPedido.pedido.descripcionEstado}" />
-				<p:outputLabel value="Agencia:" />
-					<p:selectOneMenu value="#{beanAgencia.agencia.idAgencia}" dynamic="true"
-						style="width:125px">
+				<h:panelGrid columns="2">
+					<h:outputText value="Fecha Pedido:" />
+					<p:calendar value="#{beanPedido.pedido.fechaPedido}" />
+					<h:outputText value="Fecha de Entrega:" />
+					<p:calendar value="#{beanPedido.pedido.fechaEntregaPedido}" />
+					<h:outputText value="Cliente:" />
+					<p:inputText value="#{beanPedido.nombreCliente}" />
+					<h:outputText value="pais Entrega:" />
+					<p:inputText value="#{beanPedido.pedido.paisEntrega}" />
+					<h:outputText value="Ciudad Entrega:" />
+					<p:inputText value="#{beanPedido.pedido.ciudadEntrega}" />
+					<h:outputText value="Direccion Entrega:" />
+					<p:inputText value="#{beanPedido.pedido.direccionEntrega}" />
+					<h:outputText value="Descripcion estado:" />
+					<p:inputText value="#{beanPedido.pedido.descripcionEstado}" />
+					<p:outputLabel value="Agencia:" />
+					<p:selectOneMenu value="#{beanAgencia.agencia.idAgencia}"
+						dynamic="true" style="width:125px">
 						<f:selectItems value="#{beanAgencia.listaAgencia}" var="rol"
 							itemLabel="#{rol.nombre}" itemValue="#{rol.idAgencia}" />
 					</p:selectOneMenu>
-				
-		</h:panelGrid>	
-	</p:panel>
-		<h:panelGrid style="text-align:center" columns="2">
-			<p:commandButton icon="fa fa-shopping-cart" action="catalogo"
-				value="Regresar al carrito de compras"></p:commandButton>
-			<p:commandButton icon="fa fa-save" action="#{beanPedido.actionListenerInsertarPedido()}"
-				value="Confirmar el pedido"></p:commandButton>
-		</h:panelGrid>
-	</h:form>
+
+				</h:panelGrid>
+			</p:panel>
+			<h:panelGrid style="text-align:center" columns="2">
+				<p:commandButton icon="fa fa-shopping-cart" value="Regresar"
+					action="catalogo.xhtml"></p:commandButton>
+				<p:commandButton icon="fa fa-save"
+					action="#{beanPedido.actionListenerInsertarPedido()}"
+					value="Confirmar el pedido"></p:commandButton>
+			</h:panelGrid>
+		</h:form>
+		</h:form>
 </body>
 </html>

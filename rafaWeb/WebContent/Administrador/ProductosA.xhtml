@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+	<h:form>
+		<p:menubar>
+			<p:menuitem value="Inicio" action="index.html" icon="fa fa-home"></p:menuitem>
+			<p:menuitem value="Pedidos" action="Pedidos"
+				icon="fa fa-shopping-cart"></p:menuitem>
+			<p:menuitem value="Forma Pago" action="FormaPago" icon="fa fa-ge"></p:menuitem>
+			<p:menuitem value="Empleados" action="Empleado"
+				icon="fa fa-user-plus"></p:menuitem>
+			<p:menuitem value="Color" action="Color" icon="fa fa-pie-chart"></p:menuitem>
+			<p:menuitem value="Agencia" action="Agencia" icon="fa fa-codepen"></p:menuitem>
+			<p:menuitem value="Parametros" action="Parametros" icon="fa fa-cicle"></p:menuitem>
+			<p:menuitem value="Clientes" action="DetalleClienteA"
+				icon="fa fa-user"></p:menuitem>
+			<p:menuitem value="Salir" action="faces/index.html"></p:menuitem>
+		</p:menubar>
+	</h:form>
+	<h:form id="form2">
+		<p:dataTable border="1" value="#{beanProducto.listaproducto}" var="p"
+			paginator="true" rows="6" id="tabla1" reflow="true">
+			<p:column headerText="CODIGO" style="width:80px">
+				<h:outputText value="#{p.idProducto}"></h:outputText>
+			</p:column>
+			<p:column headerText="NOMBRE">
+				<h:outputText value="#{p.nombre}"></h:outputText>
+			</p:column>
+			<p:column headerText="DESCRIPCION">
+				<h:outputText value="#{p.descripcion}"></h:outputText>
+			</p:column>
+			<p:column headerText="PRECIO UNITARIO" style="width:70px">
+				<h:outputText value="#{p.precioUnitario}"></h:outputText>
+			</p:column>
+			<p:column headerText="PRECIO AL POR MAYOR" style="width:70px">
+				<h:outputText value="#{p.precioPorMayor}"></h:outputText>
+			</p:column>
+			<p:column headerText="EXISTENCIA" style="width:70px">
+				<h:outputText value="#{p.cantidadExistente}"></h:outputText>
+			</p:column>
+			<p:column headerText="TAMANIO" style="width:70px">
+				<h:outputText value="#{p.tamanio}"></h:outputText>
+			</p:column>
+			<p:column headerText="CANTIDAD MINIMA" style="width:70px">
+				<h:outputText value="#{p.cantidadMinima}"></h:outputText>
+			</p:column>
+			<p:column headerText="COLOR" style="width:70px">
+				<h:outputText value="#{p.color.nombre}"></h:outputText>
+			</p:column>
+			<p:column headerText="Imagen" style="width: 200px">
+				<p:graphicImage url="#{p.rutaImagen}" height="120" width="100" />
+			</p:column>
+
+			<p:column headerText="OPCIONES">
+				<p:commandButton icon="fa fa-close"
+					action="#{beanProducto.actionEliminarProducto(p)}" update="@form"></p:commandButton>
+				<p:commandButton icon="fa fa-edit"
+					action="#{beanProducto.actionCargarProducto(p)}" update="@form"></p:commandButton>
+			</p:column>
+		</p:dataTable>
+	</h:form>
+</body>
+</html>

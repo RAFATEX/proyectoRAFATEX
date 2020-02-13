@@ -8,18 +8,19 @@
 
 <h:head></h:head>
 <body>
-	<body>
 		<p:growl>
 			<p:autoUpdate />
 		</p:growl>
 		<h:form>
 			<p:menubar>
-				<p:menuitem value="Inicio" action="faces/index.html" icon="fa fa-home"></p:menuitem>
-				<p:menuitem value="Pedidos" action="pedidos"
-					icon="fa fa-shopping-cart"></p:menuitem>
-				<p:menuitem value="Catalogo" action="catalogo" icon="fa fa-circle"></p:menuitem>
-				<p:menuitem value="Salir" action="faces/index.html" ></p:menuitem>
-			</p:menubar>
+			<p:menuitem value="Inicio" action="index.html" icon="fa fa-home"></p:menuitem>
+			<p:menuitem value="Catalogo" action="catalogo"
+				icon="fa fa-shopping-cart"></p:menuitem>
+			<p:menuitem value="Pedido" action="confirmacion" icon="fa fa-bars"></p:menuitem>
+			<p:menuitem value="Datos Pesonales" action="DetalleCliente"
+				icon="fa fa-user"></p:menuitem>
+			<p:menuitem value="Salir" action="faces/index.html"></p:menuitem>
+		</p:menubar>
 		</h:form>
 		<h:form id="form">
 			<p:panel header="Detalle de Clientes">
@@ -57,29 +58,29 @@
 					<p:autoUpdate />
 				</p:growl>
 				<h:outputText value="ID" />
-				<h:outputText value="#{beanCliente.clienteSeleccionado.idCliente}" />
+				<h:outputText value="#{beanCliente.clienteLogin.idCliente}" />
 				<p:panelGrid columns="2">
 					<h:outputText value="Cedula: " />
-					<p:inputText
-						value="#{beanCliente.clienteSeleccionado.cedulaCliente}" />
+					<h:outputText
+						value="#{beanCliente.clienteLogin.cedulaCliente}" />
 					<h:outputText value="Apellido: " />
 					<p:inputText
-						value="#{beanCliente.clienteSeleccionado.apellidoCliente}" />
+						value="#{beanCliente.clienteLogin.apellidoCliente}" />
 					<h:outputText value="Nombre: " />
 					<p:inputText
-						value="#{beanCliente.clienteSeleccionado.nombreCliente}" />
+						value="#{beanCliente.clienteLogin.nombreCliente}" />
 					<h:outputText value="Direccion: " />
 					<p:inputText
-						value="#{beanCliente.clienteSeleccionado.direccionCliente}" />
+						value="#{beanCliente.clienteLogin.direccionCliente}" />
 					<h:outputText value="Correo Electronico: " />
 					<p:inputText
-						value="#{beanCliente.clienteSeleccionado.correoCliente}" />
+						value="#{beanCliente.clienteLogin.correoCliente}" />
 					<h:outputText value="Telefono Convencional: " />
-					<p:inputText value="#{beanCliente.clienteSeleccionado.telefono}" />
+					<p:inputText value="#{beanCliente.clienteLogin.telefono}" />
 					<h:outputText value="Celular: " />
-					<p:inputText value="#{beanCliente.clienteSeleccionado.celular}" />
+					<p:inputText value="#{beanCliente.clienteLogin.celular}" />
 					<h:outputText value="Contraseña: " />
-					<p:password value="#{beanCliente.clienteSeleccionado.contrasenia}" />
+					<p:password value="#{beanCliente.clienteLogin.contrasenia}" />
 					<p:commandButton value="Actualizar" icon="fa fa-save"
 						action="#{beanCliente.actionActualizarCliente()}" />
 				</p:panelGrid>
@@ -92,5 +93,4 @@
 				styleClass="ui-confirmdialog-no" icon="fa fa-times" />
 		</p:confirmDialog>
 	</body>
-</body>
 </html>

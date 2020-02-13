@@ -9,6 +9,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
 import rafa.model.entities.FormaPago;
+import rafa.model.entities.Parametro;
 import rafa.model.manager.ManagerFormaPago;
 
 @Named
@@ -23,7 +24,9 @@ public class BeanFormaPago implements Serializable {
 	@EJB
 	private ManagerFormaPago mFormaPago;
 	private FormaPago formapago;
+	private Parametro parametros;
 	private List<FormaPago> listaFormaPago;
+	private List<Parametro> listaParametro;
 	private FormaPago formapagoSeleccionada;
 	//private boolean panelColapsado;
 
@@ -35,12 +38,24 @@ public class BeanFormaPago implements Serializable {
 	public void inicializar() {
 		formapago = new FormaPago();
 		listaFormaPago = mFormaPago.findAllFormaPago();
+		listaParametro = mFormaPago.findAllParametro();
 		//panelColapsado = true;
 	}
 	
 	/*public void actionListenerPanelColapsado() {
 		panelColapsado=!panelColapsado;
 	}*/
+	public void actionIngresarParametro() {
+		try {
+			mFormaPago.insertarParametro(parametros);
+			listaParametro = mFormaPago.findAllParametro();
+			parametros = new Parametro();
+			JSFUtil.crearMensajeINFO("Ingresado correctamente");
+		} catch (Exception e) {
+			JSFUtil.crearMensajeERROR(e.getMessage());
+			e.printStackTrace();
+		}
+	}
 	
 	public void actionIngresarFormaP() {
 		try {
@@ -100,6 +115,30 @@ public class BeanFormaPago implements Serializable {
 		this.formapagoSeleccionada = formapagoSeleccionada;
 	}
 
+	public ManagerFormaPago getmFormaPago() {
+		return mFormaPago;
+	}
+
+	public void setmFormaPago(ManagerFormaPago mFormaPago) {
+		this.mFormaPago = mFormaPago;
+	}
+
+	public Parametro getParametros() {
+		return parametros;
+	}
+
+	public void setParametros(Parametro parametros) {
+		this.parametros = parametros;
+	}
+
+	public List<Parametro> getListaParametro() {
+		return listaParametro;
+	}
+
+	public void setListaParametro(List<Parametro> listaParametro) {
+		this.listaParametro = listaParametro;
+	}
+
 	/*public boolean isPanelColapsado() {
 		return panelColapsado;
 	}
@@ -107,4 +146,5 @@ public class BeanFormaPago implements Serializable {
 	public void setPanelColapsado(boolean panelColapsado) {
 		this.panelColapsado = panelColapsado;
 	}*/
+	
 }

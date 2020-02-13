@@ -13,5 +13,6 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="C:/Users/CARITO/Documents/wildfly-14.0.1.Final/modules/system/layers/base/javax/persistence/api/main/javax.persistence-api-2.2.jar"/>
+	<classpathentry kind="src" path="/marketdemoEJB"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

@@ -11,26 +11,14 @@
 <body>
 	<h:form>
 		<p:menubar>
-			<p:menuitem value="Inicio" action="index" icon="fa fa-home"></p:menuitem>
-			<p:menuitem value="Pedidos" action="pedidos"
+			<p:menuitem value="Inicio" action="index.html" icon="fa fa-home"></p:menuitem>
+			<p:menuitem value="Catalogo" action="catalogo"
 				icon="fa fa-shopping-cart"></p:menuitem>
-			<p:menuitem value="Configuraciones" action="DetalleCliente" icon="fa fa-ge"></p:menuitem>
-			<p:menuitem value="Salir" action="index" ></p:menuitem>
+			<p:menuitem value="Pedido" action="confirmacion" icon="fa fa-bars"></p:menuitem>
+			<p:menuitem value="Datos Pesonales" action="DetalleCliente" icon="fa fa-user"></p:menuitem>
+			<p:menuitem value="Salir" action="faces/index"></p:menuitem>
 		</p:menubar>
 	</h:form>
-	<h:form>
-		<p:menubar>
-
-			<f:facet name="options">
-				<p:commandButton value="Salir" action="#{beanLogin.salirSistema()}"
-					icon="fa fa-sign-out" />
-			</f:facet>
-		</p:menubar>
-	</h:form>
-	<p:panel header="Datos del cliente:">
-		<h:outputText
-			value="#{beanCliente.clienteLogin.nombreCliente} #{beanCliente.clienteLogin.apellidoCliente}" />
-	</p:panel>
 	<br />
 	<h:form id="form1">
 		<p:dataGrid value="#{beanProducto.listaproducto}" var="p" columns="4"
@@ -43,7 +31,7 @@
 					<h:outputText value="$#{p.precioUnitario}" />
 					<h:outputText value="#{p.descripcion}" />
 					<p:commandButton
-						actionListener="#{beanPedidos.actionInsertarProducto(p)}"
+						action="#{beanCarrito.actionAgregarCarrito(p)}"
 						update=":form2:carrito" icon="fa fa-shopping-cart" />
 					<p:commandButton icon="fa fa-camera" title="Imagen"
 						action="#{beanProducto.actionSeleccionarP(p)}"
@@ -69,21 +57,22 @@
 	<h:form id="form2">
 		<h:panelGrid columns="2" style="width:50%">
 			<p:panel header="Carrito de compras:" id="carrito">
-				<p:dataTable value="#{beanPedidos.pedidoCabTmp.pedidoDets}"
+				<p:dataTable value="#{beanCarrito.carrito}"
 					var="det">
 					<p:column>
-						<h:outputText value="#{det.producto.nombre}" />
+						<h:outputText value="#{det.nombre}" />
 					</p:column>
 					<p:column style="width:60px;text-align:right">
-						<h:outputText value="#{det.producto.precioUnitario}" />
+						<h:outputText value="#{det.precioUnitario}" />
+					</p:column>
+					<p:column>
+						<p:commandButton title="eliminar" icon="fa fa-close" action="#{beanCarrito.actionEliminarCarrito(p)}"/>
 					</p:column>
 				</p:dataTable>
 			</p:panel>
 			<h:panelGrid style="text-align:center">
-				<h:outputText
-					value="Una vez que seleccione los productos puede confirmar su pedido: " />
 				<p:commandButton icon="ui-icon-circle-arrow-e" value="Continuar"
-					action="confirmacion"></p:commandButton>
+					action="confirmacion.xhtml"></p:commandButton>
 			</h:panelGrid>
 		</h:panelGrid>
 	</h:form>

@@ -4,7 +4,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
-import javax.persistence.Column;
+
 
 import rafa.model.entities.Cliente;
 import rafa.model.manager.ManagerCliente;

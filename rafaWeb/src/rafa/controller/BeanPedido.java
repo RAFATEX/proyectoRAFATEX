@@ -8,6 +8,8 @@ import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
+import rafa.model.entities.Agencia;
+import rafa.model.entities.Cliente;
 import rafa.model.entities.Pedido;
 import rafa.model.manager.ManagerPedido;
 
@@ -34,6 +36,8 @@ public class BeanPedido implements Serializable {
 	private String telefono;
 	//private Number rol;
 	//private Rol rolselec;
+	private Agencia agencia;
+	private Cliente cliente;
 	@PostConstruct
 	public void inicializar() {
 		ListaPedido=managerPedido.findAllPedido();
@@ -43,7 +47,7 @@ public class BeanPedido implements Serializable {
 	public void actionListenerInsertarPedido() {
 		try {
 			
-			managerPedido.insertarPedido(pedido,idCliente,idAgencia);
+			managerPedido.insertarPedido(pedido,cliente,agencia);
 			ListaPedido=managerPedido.findAllPedido();
 			pedido=new Pedido();
 			JSFUtil.crearMensajeINFO("Empleado Ingresado");;
