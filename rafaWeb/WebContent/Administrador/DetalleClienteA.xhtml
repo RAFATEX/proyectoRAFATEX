@@ -97,8 +97,11 @@
 				<h:outputText value="Contraseña: " />
 				<p:password value="#{beanCliente.clienteSeleccionado.contrasenia}" />
 				<p:commandButton value="Actualizar" icon="fa fa-save" action="#{beanCliente.actionActualizarCliente()}" />
+		
 			</p:panelGrid>
+	
 		</h:form>
+		
 	</p:dialog>
 	<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
 		<p:commandButton value="Si" type="button"
@@ -106,5 +109,9 @@
 		<p:commandButton value="No" type="button"
 			styleClass="ui-confirmdialog-no" icon="fa fa-times" />
 	</p:confirmDialog>
+							<h:form>
+		<p:commandButton value="Reporte" ajax="false"
+  			action="#{beanCliente.actionReporte()}"></p:commandButton>
+		</h:form>
 </body>
 </html>
