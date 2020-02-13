@@ -44,7 +44,7 @@ public class BeanPedido implements Serializable {
 		pedido=new Pedido();
 		panelColapsado=true;
 	}
-	public void actionListenerInsertarPedido() {
+	public void actionInsertarPedido() {
 		try {
 			
 			managerPedido.insertarPedido(pedido,cliente,agencia);

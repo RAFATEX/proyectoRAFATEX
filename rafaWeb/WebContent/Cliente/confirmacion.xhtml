@@ -42,7 +42,7 @@
 					<h:outputText value="Fecha de Entrega:" />
 					<p:calendar value="#{beanPedido.pedido.fechaEntregaPedido}" />
 					<h:outputText value="Cliente:" />
-					<p:inputText value="#{beanPedido.nombreCliente}" />
+					<h:inputText value="#{beanCliente.clienteLogin.idCliente}" />
 					<h:outputText value="pais Entrega:" />
 					<p:inputText value="#{beanPedido.pedido.paisEntrega}" />
 					<h:outputText value="Ciudad Entrega:" />
@@ -57,14 +57,13 @@
 						<f:selectItems value="#{beanAgencia.listaAgencia}" var="rol"
 							itemLabel="#{rol.nombre}" itemValue="#{rol.idAgencia}" />
 					</p:selectOneMenu>
-
 				</h:panelGrid>
 			</p:panel>
 			<h:panelGrid style="text-align:center" columns="2">
 				<p:commandButton icon="fa fa-shopping-cart" value="Regresar"
 					action="catalogo.xhtml"></p:commandButton>
 				<p:commandButton icon="fa fa-save"
-					action="#{beanPedido.actionListenerInsertarPedido()}"
+					action="#{beanPedido.actionInsertarPedido()}"
 					value="Confirmar el pedido"></p:commandButton>
 			</h:panelGrid>
 		</h:form>

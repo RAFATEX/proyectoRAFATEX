@@ -5,12 +5,10 @@ import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
-<<<<<<< HEAD
 
-=======
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
->>>>>>> 8e907c012b3c41179f39a8f8f85728825dbf2543
+
 
 
 
