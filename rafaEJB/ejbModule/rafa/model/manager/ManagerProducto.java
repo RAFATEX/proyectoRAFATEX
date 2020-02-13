@@ -8,13 +8,11 @@ import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 
 import rafa.model.manager.ManagerDAO;
 
 import rafa.model.entities.Producto;
 import rafa.model.entities.Color;
-import rafa.model.entities.Empleado;
 
 /**
  * Session Bean implementation class ManagerProducto
@@ -49,11 +47,19 @@ public class ManagerProducto {
   	}
  
    
-    public void insertarProducto(Producto producto, Number idcolor,Number idempleado) {
-    	Color color = (Color) em.find(Color.class, idcolor);    
-    	Empleado empleado=(Empleado)em.find(Empleado.class, idempleado);
-    	producto.setColor(color);
-    	em.persist(producto);
+    public void insertarProducto(Producto p, Color idcolor) {
+    	 p =  new Producto();
+    	 idcolor = new Color();
+    	    p.setDescripcion(p.getDescripcion());
+			p.setCantidadExistente(p.getCantidadExistente());
+			p.setNombre(p.getNombre());
+			p.setPrecioUnitario(p.getPrecioUnitario());
+			p.setPrecioPorMayor(p.getPrecioPorMayor());
+			p.setRutaImagen(p.getRutaImagen());
+			p.setTamanio(p.getTamanio());
+			p.setCantidadMinima(p.getCantidadMinima());
+    	    p.setColor(idcolor);
+    	em.persist(p);
     }
  
   	public void eliminarProducto(Integer codigoProducto) throws Exception{

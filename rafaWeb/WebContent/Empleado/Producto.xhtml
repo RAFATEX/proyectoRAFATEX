@@ -30,29 +30,31 @@
 		<h:form id="form1">
 			<p:panelGrid columns="2">
 				<h:outputText value="NOMBRE:" />
-				<p:inputText value="#{beanProducto.nombre}"></p:inputText>
+				<p:inputText value="#{beanProducto.producto.nombre}"></p:inputText>
 				<h:outputText value="DESCRIPCION:" />
-				<p:inputText value="#{beanProducto.descripcion}"></p:inputText>
+				<p:inputText value="#{beanProducto.producto.descripcion}"></p:inputText>
 				<h:outputText value="IMAGEN:" />
+<<<<<<< HEAD
 				<p:inputText value="#{beanProducto.rutaImagen}"></p:inputText>
+=======
+			    <p:inputText value="#{beanProducto.producto.rutaImagen}"></p:inputText>	
+>>>>>>> 8e907c012b3c41179f39a8f8f85728825dbf2543
 				<h:outputText value="CANTIDAD MINIMA:" />
-				<p:spinner value="#{beanProducto.cantidadminima}" min="3" size="10" />
+				<p:inputText value="#{beanProducto.producto.cantidadMinima}"></p:inputText>	
 				<h:outputText value="PRECIO:" />
-				<p:spinner value="#{beanProducto.precioUnitario}" stepFactor="0.01"
-					min="0" size="10" />
+				<p:inputText value="#{beanProducto.producto.precioUnitario}"></p:inputText>	
 				<h:outputText value="PRECIO AL POR MAYOR:" />
-				<p:spinner value="#{beanProducto.precioMayor}" stepFactor="0.01"
-					min="0" size="10" />
+				<p:inputText value="#{beanProducto.producto.precioPorMayor}"></p:inputText>	
 				<h:outputText value="EXISTENCIA:" />
-				<p:spinner value="#{beanProducto.existencia}" min="0" size="10" />
+				<p:inputText value="#{beanProducto.producto.cantidadExistente}" ></p:inputText>	
 				<h:outputText value="TAMANIO" />
-				<p:selectOneMenu value="#{beanProducto.tamanio}">
+				<p:selectOneMenu value="#{beanProducto.producto.tamanio}">
 					<f:selectItem itemLabel="PEQUEÑO" itemValue="PEQUEÑO" />
 					<f:selectItem itemLabel="MEDIANO" itemValue="MEDIANO" />
 					<f:selectItem itemLabel="GRANDE" itemValue="GRANDE" />
 				</p:selectOneMenu>
 				<p:outputLabel value="COLOR:" />
-				<p:selectOneMenu value="#{beanColor.idcolor}" dynamic="true"
+				<p:selectOneMenu value="#{beanColor.color.idColor}" dynamic="true"
 					style="width:125px">
 					<f:selectItems value="#{beanColor.listaColores}" var="color"
 						itemLabel="#{color.nombre}" itemValue="#{color.idColor}" />

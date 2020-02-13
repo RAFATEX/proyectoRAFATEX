@@ -1,7 +1,5 @@
 package rafa.controller;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
@@ -9,13 +7,8 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
-import org.primefaces.event.FileUploadEvent;
-import org.primefaces.model.UploadedFile;
 
 import rafa.model.entities.Color;
 import rafa.model.entities.Empleado;
@@ -49,25 +42,22 @@ public class BeanProducto implements Serializable {
 	private BigDecimal cantidadExistente;
 	private Number idcolor;
 	private Number idempleado;
-	private UploadedFile uploadedFile;
-	
 	@PostConstruct
 	public void inicializar() {
 		listaproducto=managerProducto.findAllProductos();
+		producto= new Producto();
+		color = new Color();
 	}
 	
 	
 	
 	public void actionInsertarProducto(){
-		try {
-		managerProducto.insertarProducto(producto, idcolor,idempleado);
+		
+		managerProducto.insertarProducto(producto, color);
 			listaproducto=managerProducto.findAllProductos(); 
 			producto = new Producto();
 			JSFUtil.crearMensajeINFO("Producto Ingresado");
-		} catch (Exception e) {
-			JSFUtil.crearMensajeERROR(e.getMessage());
-			e.printStackTrace();
-		}
+	
 		
 	}
 	
@@ -129,20 +119,6 @@ public class BeanProducto implements Serializable {
 		return "productos";
 	}
 
-	  public void uploadPhoto(FileUploadEvent e) throws IOException {
-	        uploadedFile = e.getFile();
-	        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-	        String filePath = ec.getRealPath(String.format("/resources/img/%s", uploadedFile.getFileName()));
-	     
-	        if (null != uploadedFile) {
-	            FileOutputStream fos = new FileOutputStream(filePath);
-	            fos.write(uploadedFile.getContents());
-	            fos.flush();
-	            fos.close();
-	        }
-
-	        FacesContext.getCurrentInstance().addMessage("messages", new FacesMessage(FacesMessage.SEVERITY_INFO, "subio elvideo con exito " + uploadedFile.getFileName(), ""));
-	    }
 
 	public void actionSeleccionarP(Producto p) {
 		seleccionado = p;
@@ -280,16 +256,6 @@ public class BeanProducto implements Serializable {
 
 
 
-	public UploadedFile getUploadedFile() {
-		return uploadedFile;
-	}
-
-
-
-	public void setUploadedFile(UploadedFile uploadedFile) {
-		this.uploadedFile = uploadedFile;
-	}
-	
 
 	
 }
