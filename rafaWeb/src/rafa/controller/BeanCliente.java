@@ -42,6 +42,7 @@ public class BeanCliente implements Serializable
 	{
 		cliente = new Cliente();
 		listaClientes = mCliente.FindAllCLientes();
+		listaporClientes = mCliente.FindAllCLientes();
 	}
 	
 	public String actionIngresarCliente()
@@ -80,8 +81,9 @@ public class BeanCliente implements Serializable
 	}
 	
 	public String actionLogin() {
-		listaClientes = mCliente.FindAllCLientes();
-		for (Cliente c:listaClientes) 
+		//listaClientes = mCliente.FindAllCLientes();
+		listaporClientes = mCliente.FindAllCLientes();
+		for (Cliente c:listaporClientes) 
 		{
 			if(c.getCedulaCliente().equals(this.cedulaCliente) && c.getContrasenia().equals(this.contrasenia))
 			{

@@ -12,11 +12,11 @@
 	<p:panel header="Datos del cliente:" style="width:800px">
 		<h:panelGrid columns="2">
 			<h:outputText value="Cédula:" />
-			<h:outputText value="#{beanPedido.cedulaCliente}" />
+			<h:outputText value="#{beanCliente.clienteLogin.cedulaCliente}" />
 			<h:outputText value="Nombres:" />
-			<h:outputText value="#{beanPedido.nombreCliente} #{beanPedido.apellidoCliente}" />
+			<h:outputText value="#{beanCliente.clienteLogin.nombreCliente} #{beanCliente.clienteLogin.apellidoCliente}" />
 			<h:outputText value="Dirección:" />
-			<h:outputText value="#{beanPedido.direccionCliente}" />
+			<h:outputText value="#{beanCliente.clienteLogin.direccionCliente}" />
 		</h:panelGrid>
 	</p:panel>
 	<br />
